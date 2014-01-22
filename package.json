@@ -6,13 +6,13 @@
     "rets"
   ],
   "license": "MIT",
-  "copyright" : "Copyright (c) 2013 Usability Dynamics, Inc.",
+  "copyright": "Copyright (c) 2013 Usability Dynamics, Inc.",
   "author": {
     "name": "Usability Dynamics",
     "email": "info@usabilitydynamics.com",
     "url": "http://usabilitydynamics.com"
   },
-  "contributors": [ 
+  "contributors": [
     {
       "name": "Andy Potanin",
       "email": "andy.potanin@usabilitydynamics.com",
@@ -33,7 +33,7 @@
     "url": "https://github.com/UsabilityDynamics/node-rets-client.git"
   },
   "main": "index",
-  "dependencies" : {
+  "dependencies": {
     "lodash": "*",
     "debug": "*",
     "request": "*",
@@ -41,7 +41,8 @@
     "extend": "*",
     "object-emitter": "*",
     "object-settings": "*",
-    "auto": "*"
+    "auto": "*",
+    "MD5": "~1.2.0"
   },
   "devDependencies": {
     "mocha": "*",
