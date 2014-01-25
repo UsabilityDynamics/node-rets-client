@@ -2,12 +2,46 @@
 This is a (very) beta Node.js RETS client. The purpose of this module is to establish a connection to a RETS provider and perform most of the common queries.
 If you are experienced with RETS and would like to assist with this development your help would be very welcome.
 
+## Terminology
+
+* Classification - A sub-type of resource. In case of "Property" resource this could be something like "Residential".
+* Resource
+* User Agent
+* User Agent Password
+
+## Methods
+The methods attempt to model phRETS for convinience.
+
+* getAllLookupValues - Get all lookup values for a resource.
+* getClassifications - Get classifications for a particular resource type.
+* getLoginURL
+* getLookupValues
+* getMetadataResources
+* getMetadataInfo
+* getMetadataTable
+* getMetadata
+* getMetadataClasses
+* getMetadataTypes
+* getObject
+* getServerSoftware
+* getServerVersion
+* getAllTransactions
+* getServerInformation
+* request - Abstract RETS request.
+* search - General resource search.
+* serverDetail - Get server detail.
+
+## Code Concepts
+
+* All instance methods accept a callback method as the last argument.
+* All callback methods accept two parameters, the first being an instance of Error or null, the second being data.
+
 ## Usage Example
 Below is a very simple example that simply establishes a RETS connection with digest authentication and then loads an object containing all available classifications.
 
 ```javascript
 
-var RETS = require( 'rets' );
+var RETS = require( 'rets-client' );
 
 // Create Connection.
 var client = RETS.createConnection({
@@ -22,7 +56,7 @@ client.once( 'connection.success', function connected( client ) {
   console.log( 'Connected to RETS as %s.', client.get( 'provider.name' ) )
 
   // Fetch classifications
-  client.get_classifications( function have_meta( error, meta ) {
+  client.getClassifications( function have_meta( error, meta ) {
 
     if( error ) {
       console.log( 'Error while fetching classifications: %s.', error.message );
@@ -47,11 +81,26 @@ If there are no errors, the above code should result in the following console me
  - Fetched 6 classifications.
  - Classification keys: REN,CML,MUL,LND,CMS,RES.
 
+## Environment Variables
+Used mostly for testing, the following environment variables are recognized by the module.
+
+```shell
+export RETS_HOST=sef.rets.interealty.com
+export RETS_PROTOCOL=http:
+export RETS_VERSION=1.7
+export RETS_PORT=80
+export RETS_PATH=/Login.asmx/Login
+export RETS_USER=ricky-bobby
+export RETS_PASS=talladega
+export RETS_AGENT=RETS-Connector/1.2
+export RETS_AGENT_PASSWORD=password
+```
+
 ## License
 
 (The MIT License)
 
-Copyright (c) 2013 Usability Dynamics, Inc. &lt;info@usabilitydynamics.com&gt;
+Copyright (c) 2013-2014 Usability Dynamics, Inc. &lt;info@usabilitydynamics.com&gt;
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

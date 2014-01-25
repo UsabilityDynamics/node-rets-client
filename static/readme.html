@@ -1,0 +1,225 @@
+<!DOCTYPE  html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>doc</title>
+    <style>
+      /*github.com style (c) Vasily Polovnyov <vast@whiteants.net>*/
+      pre code {
+        display: block; padding: 0.5em;
+        color: #333;
+        background: #f8f8ff
+      }
+      pre .comment,
+      pre .template_comment,
+      pre .diff .header,
+      pre .javadoc {
+        color: #998;
+        font-style: italic
+      }
+      pre .keyword,
+      pre .css .rule .keyword,
+      pre .winutils,
+      pre .javascript .title,
+      pre .nginx .title,
+      pre .subst,
+      pre .request,
+      pre .status {
+        color: #333;
+        font-weight: bold
+      }
+      pre .number,
+      pre .hexcolor,
+      pre .ruby .constant {
+        color: #099;
+      }
+      pre .string,
+      pre .tag .value,
+      pre .phpdoc,
+      pre .tex .formula {
+        color: #d14
+      }
+      pre .title,
+      pre .id {
+        color: #900;
+        font-weight: bold
+      }
+      pre .javascript .title,
+      pre .lisp .title,
+      pre .clojure .title,
+      pre .subst {
+        font-weight: normal
+      }
+      pre .class .title,
+      pre .haskell .type,
+      pre .vhdl .literal,
+      pre .tex .command {
+        color: #458;
+        font-weight: bold
+      }
+      pre .tag,
+      pre .tag .title,
+      pre .rules .property,
+      pre .django .tag .keyword {
+        color: #000080;
+        font-weight: normal
+      }
+      pre .attribute,
+      pre .variable,
+      pre .lisp .body {
+        color: #008080
+      }
+      pre .regexp {
+        color: #009926
+      }
+      pre .class {
+        color: #458;
+        font-weight: bold
+      }
+      pre .symbol,
+      pre .ruby .symbol .string,
+      pre .lisp .keyword,
+      pre .tex .special,
+      pre .prompt {
+        color: #990073
+      }
+      pre .built_in,
+      pre .lisp .title,
+      pre .clojure .built_in {
+        color: #0086b3
+      }
+      pre .preprocessor,
+      pre .pi,
+      pre .doctype,
+      pre .shebang,
+      pre .cdata {
+        color: #999;
+        font-weight: bold
+      }
+      pre .deletion {
+        background: #fdd
+      }
+      pre .addition {
+        background: #dfd
+      }
+      pre .diff .change {
+        background: #0086b3
+      }
+      pre .chunk {
+        color: #aaa
+      }
+    </style>
+  </head>
+  <body>  
+    <h2 id="node-js-rets-client">Node.js RETS Client</h2>
+<p>This is a (very) beta Node.js RETS client. The purpose of this module is to establish a connection to a RETS provider and perform most of the common queries.
+If you are experienced with RETS and would like to assist with this development your help would be very welcome.</p>
+<h2 id="terminology">Terminology</h2>
+<ul>
+<li>Classification - A sub-type of resource. In case of &quot;Property&quot; resource this could be something like &quot;Residential&quot;.</li>
+<li>Resource</li>
+<li>User Agent</li>
+<li>User Agent Password</li>
+</ul>
+<h2 id="methods">Methods</h2>
+<p>The methods attempt to model phRETS for convinience.</p>
+<ul>
+<li>getAllLookupValues - Get all lookup values for a resource.</li>
+<li>getClassifications - Get classifications for a particular resource type.</li>
+<li>getLoginURL</li>
+<li>getLookupValues</li>
+<li>getMetadataResources</li>
+<li>getMetadataInfo</li>
+<li>getMetadataTable</li>
+<li>getMetadata</li>
+<li>getMetadataClasses</li>
+<li>getMetadataTypes</li>
+<li>getObject</li>
+<li>getServerSoftware</li>
+<li>getServerVersion</li>
+<li>getAllTransactions</li>
+<li>getServerInformation</li>
+<li>request - Abstract RETS request.</li>
+<li>search - General resource search.</li>
+<li>serverDetail - Get server detail.</li>
+</ul>
+<h2 id="code-concepts">Code Concepts</h2>
+<ul>
+<li>All instance methods accept a callback method as the last argument.</li>
+<li>All callback methods accept two parameters, the first being an instance of Error or null, the second being data.</li>
+</ul>
+<h2 id="usage-example">Usage Example</h2>
+<p>Below is a very simple example that simply establishes a RETS connection with digest authentication and then loads an object containing all available classifications.</p>
+<pre><code class="lang-javascript">
+var RETS = require( &#39;rets-client&#39; );
+
+// Create Connection.
+var client = RETS.createConnection({
+  host: &#39;www.some-rets-provider.com&#39;,
+  path: &#39;/login.asps&#39;,
+  user: &#39;ricky-bobby&#39;,
+  pass: &#39;talladega&#39;
+});
+
+// Trigger on successful connection.
+client.once( &#39;connection.success&#39;, function connected( client ) {
+  console.log( &#39;Connected to RETS as %s.&#39;, client.get( &#39;provider.name&#39; ) )
+
+  // Fetch classifications
+  client.getClassifications( function have_meta( error, meta ) {
+
+    if( error ) {
+      console.log( &#39;Error while fetching classifications: %s.&#39;, error.message );
+    } else {
+      console.log( &#39;Fetched %d classifications.&#39;, Object.keys( meta.data ).length );
+      console.log( &#39;Classification keys: %s.&#39;, Object.keys( meta.data ) );
+    }
+
+  });
+
+});
+
+// Trigger on connection failure.
+client.once( &#39;connection.error&#39;, function connection_error( error, client ) {
+  console.error( &#39;Connection failed: %s.&#39;, error.message );
+});</code></pre>
+<p>If there are no errors, the above code should result in the following console messages:</p>
+<ul>
+<li>Connected to RETS as &quot;Ricky Bobby, Inc.&quot;.</li>
+<li>Fetched 6 classifications.</li>
+<li>Classification keys: REN,CML,MUL,LND,CMS,RES.</li>
+</ul>
+<h2 id="environment-variables">Environment Variables</h2>
+<p>Used mostly for testing, the following environment variables are recognized by the module.</p>
+<pre><code class="lang-shell">export RETS_HOST=sef.rets.interealty.com
+export RETS_PROTOCOL=http:
+export RETS_VERSION=1.7
+export RETS_PORT=80
+export RETS_PATH=/Login.asmx/Login
+export RETS_USER=ricky-bobby
+export RETS_PASS=talladega
+export RETS_AGENT=RETS-Connector/1.2
+export RETS_AGENT_PASSWORD=password</code></pre>
+<h2 id="license">License</h2>
+<p>(The MIT License)</p>
+<p>Copyright (c) 2013-2014 Usability Dynamics, Inc. &lt;info@usabilitydynamics.com&gt;</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+&#39;Software&#39;), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED &#39;AS IS&#39;, WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+
+  </body>
+</html>

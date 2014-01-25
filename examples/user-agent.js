@@ -1,5 +1,5 @@
 /**
- * Basic Usage Example
+ * Usage Example with RETS User Agent and Password Authentication
  *
  */
 
@@ -11,7 +11,12 @@ var client = RETS.createConnection({
   host: process.env.RETS_HOST,
   path: process.env.RETS_PATH,
   user: process.env.RETS_USER,
-  pass: process.env.RETS_PASS
+  pass: process.env.RETS_PASS,
+  version: process.env.RETS_VERSION,
+  agent: {
+    user: process.env.RETS_AGENT,
+    password: process.env.RETS_AGENT_PASSWORD
+  }
 });
 
 // Trigger on successful connection.

@@ -1,12 +1,13 @@
 {
   "name": "rets-client",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Node.js client for RETS.",
+  "homepage": "https://github.com/UsabilityDynamics/node-rets-client",
   "keywords": [
     "rets"
   ],
   "license": "MIT",
-  "copyright": "Copyright (c) 2013 Usability Dynamics, Inc.",
+  "copyright": "Copyright (c) 2014 Usability Dynamics, Inc.",
   "author": {
     "name": "Usability Dynamics",
     "email": "info@usabilitydynamics.com",
@@ -16,11 +17,6 @@
     {
       "name": "Andy Potanin",
       "email": "andy.potanin@usabilitydynamics.com",
-      "url": "http://usabilitydynamics.com"
-    },
-    {
-      "name": "Ivan McCarthy",
-      "email": "ivan.mccarthy@usabilitydynamics.com",
       "url": "http://usabilitydynamics.com"
     }
   ],
@@ -45,7 +41,13 @@
     "MD5": "~1.2.0"
   },
   "devDependencies": {
+    "grunt-contrib-jshint": "~0.6.4",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-markdown": "~0.5.0",
     "mocha": "*",
-    "should": "*"
+    "should": "*",
+    "grunt": "~0.4.2",
+    "grunt-contrib-yuidoc": "~0.5.0",
+    "grunt-contrib-less": "~0.9.0"
   }
 }

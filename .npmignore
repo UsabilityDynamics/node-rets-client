@@ -1,8 +1,0 @@
-node_modules/
-temp/
-.git/
-.idea/
-.idea/workspace.xml
-.DS_Store
-.svn
-test/_*.js

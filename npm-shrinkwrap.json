@@ -1,5 +1,5 @@
 {
-  "name": "rets",
+  "name": "rets-client",
   "version": "0.0.1",
   "dependencies": {
     "lodash": {
