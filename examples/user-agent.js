@@ -23,15 +23,18 @@ var client = RETS.createConnection({
 client.once( 'connection.success', function connected( client ) {
   console.log( 'Connected to RETS as "%s".', client.get( 'provider.name' ) )
 
-  // Fetch classifications
-  client.getClassifications( function haveClassifications( error, meta ) {
+  // console.log( require( 'util' ).inspect( client.get(), { showHidden: false, colors: true, depth: 2 } ) )
 
-    if( error ) {
-      console.log( 'Error while fetching classifications: %s.', error.message );
-    } else {
-      console.log( 'Fetched %d classifications.', Object.keys( meta.data ).length );
-      console.log( 'Classification keys: %s.', Object.keys( meta.data ) );
-    }
+  // Fetch classifications
+
+  client.searchQuery({
+    resource: 'Property',
+    class: '1',
+    dmql: '(246=A),(276=MOBILE),(61=DADE,BROWARD,PALMBCH),(1=RE1)',
+    limit: 100
+  }, function( error, data ) {
+
+    console.log( require( 'util' ).inspect( data, { showHidden: false, colors: true, depth: 5 } ) )
 
   });
 

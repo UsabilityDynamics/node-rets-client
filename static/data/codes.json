@@ -1,0 +1,12 @@
+[
+  {
+    "code": 20036,
+    "title": "Miscellaneous server login error",
+    "description": ""
+  },
+  {
+    "code": 20037,
+    "title": "Client authentication failed",
+    "description": ""
+  }
+]
