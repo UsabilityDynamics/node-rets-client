@@ -1,4 +1,15 @@
-## Node.js RETS Client
+***
+[![Issues - Bug](https://badge.waffle.io/usabilitydynamics/node-rets-client.png?label=bug&title=Bugs)](http://waffle.io/usabilitydynamics/node-rets-client)
+[![Issues - Backlog](https://badge.waffle.io/usabilitydynamics/node-rets-client.png?label=backlog&title=Backlog)](http://waffle.io/usabilitydynamics/node-rets-client/)
+[![Issues - Active](https://badge.waffle.io/usabilitydynamics/node-rets-client.png?label=in progress&title=Active)](http://waffle.io/usabilitydynamics/node-rets-client/)
+***
+[![Dependency Status](https://gemnasium.com/UsabilityDynamics/node-rets-client.svg)](https://gemnasium.com/UsabilityDynamics/node-rets-client)
+[![CodeClimate](http://img.shields.io/codeclimate/github/UsabilityDynamics/node-rets-client.svg)](https://codeclimate.com/github/UsabilityDynamics/node-rets-client)
+[![CodeClimate Coverage](http://img.shields.io/codeclimate/coverage/github/UsabilityDynamics/node-rets-client.svg)](https://codeclimate.com/github/UsabilityDynamics/node-rets-client)
+[![NPM Version](http://img.shields.io/npm/v/object-settings.svg)](https://www.npmjs.org/package/object-settings)
+[![CircleCI](https://circleci.com/gh/UsabilityDynamics/node-rets-client.png?circle-token=a6edf899cba43feee561ff15a150010e799c1946)](https://circleci.com/gh/UsabilityDynamics/node-rets-client)
+***
+
 This is a (very) beta Node.js RETS client. The purpose of this module is to establish a connection to a RETS provider and perform most of the common queries.
 If you are experienced with RETS and would like to assist with this development your help would be very welcome.
 
