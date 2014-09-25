@@ -35,10 +35,9 @@
     "debug": "*",
     "extend": "*",
     "lodash": "*",
-    "node-curl": "git://github.com/jiangmiao/node-curl.git",
+    "node-curl": "*",
     "object-emitter": "*",
     "object-settings": "*",
-    "request": "*",
     "xml2js": "*"
   },
   "devDependencies": {
