@@ -30,15 +30,15 @@
   },
   "main": "index",
   "dependencies": {
-    "lodash": "*",
+    "MD5": "~1.2.0",
+    "auto": "*",
     "debug": "*",
-    "request": "*",
-    "xml2js": "*",
     "extend": "*",
+    "lodash": "*",
+    "node-curl": "*",
     "object-emitter": "*",
     "object-settings": "*",
-    "auto": "*",
-    "MD5": "~1.2.0"
+    "xml2js": "*"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "~0.6.4",
