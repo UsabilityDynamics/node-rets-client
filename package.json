@@ -38,6 +38,7 @@
     "node-curl": "*",
     "object-emitter": "*",
     "object-settings": "*",
+    "xml-stream": "^0.4.5",
     "xml2js": "*"
   },
   "devDependencies": {
