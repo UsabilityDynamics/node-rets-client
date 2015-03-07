@@ -28,6 +28,12 @@
     "type": "git",
     "url": "https://github.com/UsabilityDynamics/node-rets-client.git"
   },
+  "bin": {
+    "mocha": "./node_modules/bin"
+  },
+  "scripts": {
+    "test": "mocha ./test/api.js --reporter spec"
+  },
   "main": "index",
   "dependencies": {
     "MD5": "~1.2.0",
