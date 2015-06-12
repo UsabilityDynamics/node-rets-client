@@ -7,6 +7,8 @@
  * @date 8/9/13
  * @type {Object}
  */
+should = require('should');
+
 module.exports = {
 
   'RETS API': {
@@ -25,9 +27,29 @@ module.exports = {
      *
      */
     'can establish connection to a provider.': function( done ) {
-      this.timeout( 1000 );
+      this.timeout( 15000 );
       var RETS = require( '../' );
-      done();
+
+      var client = RETS.createConnection({
+          host: '',
+          port: '',
+          protocol: '',
+          path: '',
+          user: '',
+          pass: '',
+          version: '1.7.2',
+          agent: { user: '', password: '' }
+      });
+
+      client.once('connection.error',function(error, client){
+          console.log( 'Connection failed: %s.', error.message );
+          done();
+      });
+
+      client.once('connection.success',function(client){
+          console.log( 'Connected to RETS as %s.', client.get( 'provider.name' ) );
+          done();
+      });
 
     }
 

@@ -28,17 +28,24 @@
     "type": "git",
     "url": "https://github.com/UsabilityDynamics/node-rets-client.git"
   },
+  "bin": {
+    "mocha": "./node_modules/bin"
+  },
+  "scripts": {
+    "test": "mocha ./test/api.js --reporter spec"
+  },
   "main": "index",
   "dependencies": {
-    "lodash": "*",
+    "MD5": "~1.2.0",
+    "auto": "*",
     "debug": "*",
-    "request": "*",
-    "xml2js": "*",
     "extend": "*",
+    "lodash": "*",
+    "node-curl": "*",
     "object-emitter": "*",
     "object-settings": "*",
-    "auto": "*",
-    "MD5": "~1.2.0"
+    "xml-stream": "^0.4.5",
+    "xml2js": "*"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "~0.6.4",
